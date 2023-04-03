@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="d-flex flex-column mb-3">
+        {% if user.is_working %}
+           <div> <a class="btn btn-danger mb-4" href="{% url 'chkout' %}" type="submit">ثبت خروج</a></div>
+        {% else %}
+        <div><a class="btn btn-success mb-4" href="{% url 'chkin' %}" type="submit">ثبت ورود</a></div>
+        {% endif %}
+        
+        <p class="d-flex justify-content-center"><a class="btn btn-warning mt-5" href="{% url 'logout' %}">logout</a></p>
+    </div>
+{% else %}
+<div>
+  <div><p class="d-flex w-100 justify-content-center">لطف وارد شود</p></div>
+  <br/>
+  <a class="btn btn-warning d-flex justify-content-center w-100" href="{% url 'login' %}">login</a>
+</div>
+{% endif %}
+{% endblock %}
